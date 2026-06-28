@@ -859,7 +859,7 @@
 
   <!-- ===== FORM VIEW ===== -->
   <div id="formView">
-  <form id="feedbackForm" action="https://formbold.com/s/3Laev" method="POST" target="_blank">
+  <form id="feedbackForm" action="https://formbold.com/s/3Laev" method="POST" target="_blank" onsubmit="return handleSubmit(event)">
 
     <!-- SEÇÃO 1: CONTEXTO -->
     <div class="form-section">
@@ -1470,7 +1470,7 @@
       <input type="hidden" name="topicos_menos_ajudaram" id="topicosMenosAjudaram">
     </div>
 
-    <button type="button" class="submit-btn" onclick="submitForm(event)">
+    <button type="submit" class="submit-btn">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
       Enviar Feedback
     </button>
@@ -1839,14 +1839,14 @@ function saveRanking() {
 saveRanking();
 
 // ===== FORM SUBMIT =====
-function submitForm(e) {
+function handleSubmit(e) {
   if (localStorage.getItem('eter_feedback_enviado') === '1') {
     e.preventDefault();
     alert('Você já enviou seu feedback. Obrigado!');
-    return;
+    return false;
   }
 
-  // Marcar como enviado antes de enviar para o FormBold
+  // Marcar como enviado
   localStorage.setItem('eter_feedback_enviado', '1');
 
   const formData = {
